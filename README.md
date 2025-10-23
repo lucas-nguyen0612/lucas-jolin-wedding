@@ -1,6 +1,6 @@
 # Lucas & Jolin Wedding Website
 
-Trang web đám cưới của Linh & Nguyên.
+Trang web đám cưới của Lucas & Jolin.
 
 ## Cấu trúc dự án
 
