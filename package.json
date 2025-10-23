@@ -5,7 +5,6 @@
   "main": "index.html",
   "scripts": {
     "dev": "live-server .",
-    "build": "echo 'Static website - no build needed'",
     "start": "echo 'Static website ready for deployment'"
   },
   "keywords": ["wedding", "website", "static"],
