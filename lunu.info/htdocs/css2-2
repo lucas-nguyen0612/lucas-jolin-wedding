@@ -1,0 +1,7 @@
+﻿@font-face {
+  font-family: 'Meow Script';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(s/meowscript/v5/0FlQVPqanlaJrtr8AnJ0ESch.ttf) format('truetype');
+}
