@@ -5532,12 +5532,168 @@
       }
     </style>
 
-    <div class="cloud-door left-door"></div>
-    <div class="cloud-door right-door"></div>
+    <div class="cloud-door left-door" id="left-door"></div>
+    <div class="cloud-door right-door" id="right-door"></div>
+    
+    <!-- Text hướng dẫn mở thiệp -->
+    <div id="open-invitation-text" style="
+      position: fixed;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10000;
+      text-align: center;
+      pointer-events: none;
+    ">
+      <div style="
+        font-size: 32px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 
+          0 0 10px rgba(255, 255, 255, 0.8),
+          0 0 20px rgba(255, 192, 203, 0.6),
+          0 0 30px rgba(255, 192, 203, 0.4),
+          2px 2px 4px rgba(0, 0, 0, 0.5);
+        animation: bounce 2s ease-in-out infinite, glow-text 2s ease-in-out infinite;
+        font-family: 'Dancing Script', cursive;
+        letter-spacing: 2px;
+      ">
+        💝 Chạm vào thiệp để mở 💝
+      </div>
+      <div style="
+        font-size: 18px;
+        color: #fff;
+        margin-top: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        animation: pulse-text 1.5s ease-in-out infinite;
+        font-family: 'Arial', sans-serif;
+      ">
+        Click here!
+      </div>
+      <div style="
+        font-size: 60px;
+        margin-top: 20px;
+        animation: bounce-arrow 1s ease-in-out infinite;
+      ">
+        👇
+      </div>
+    </div>
+
+    <style>
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes bounce-arrow {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(15px);
+        }
+      }
+
+      @keyframes glow-text {
+        0%, 100% {
+          text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 192, 203, 0.6),
+            0 0 30px rgba(255, 192, 203, 0.4),
+            2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        50% {
+          text-shadow: 
+            0 0 20px rgba(255, 255, 255, 1),
+            0 0 30px rgba(255, 192, 203, 0.8),
+            0 0 40px rgba(255, 192, 203, 0.6),
+            2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      @keyframes pulse-text {
+        0%, 100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.7;
+          transform: scale(1.1);
+        }
+      }
+
+      /* Hiệu ứng lấp lánh cho cửa */
+      .door-shimmer {
+        animation: shimmer 2s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0%, 100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.2);
+        }
+      }
+    </style>
+
     <script>
-      window.onload = function () {
-        setTimeout(() => document.body.classList.add("open"), 500);
-      };
+      // Không tự động mở cửa nữa
+      // Thay vào đó, click vào cửa để mở và bật nhạc
+      document.addEventListener('DOMContentLoaded', function() {
+        const leftDoor = document.getElementById('left-door');
+        const rightDoor = document.getElementById('right-door');
+        const audio = document.getElementById('background-music');
+        const openText = document.getElementById('open-invitation-text');
+        
+        // Thêm hiệu ứng shimmer cho cửa
+        leftDoor.classList.add('door-shimmer');
+        rightDoor.classList.add('door-shimmer');
+        
+        function openDoorsAndPlayMusic() {
+          // Ẩn text hướng dẫn
+          openText.style.transition = 'opacity 0.5s ease-out';
+          openText.style.opacity = '0';
+          setTimeout(() => {
+            openText.style.display = 'none';
+          }, 500);
+          
+          // Mở cửa
+          document.body.classList.add('open');
+          
+          // Phát nhạc
+          if (audio) {
+            audio.muted = false;
+            audio.play().then(() => {
+              console.log('Nhạc đã bắt đầu phát!');
+            }).catch(err => {
+              console.log('Lỗi phát nhạc:', err);
+            });
+          }
+          
+          // Xóa event listener sau khi đã mở
+          leftDoor.removeEventListener('click', openDoorsAndPlayMusic);
+          rightDoor.removeEventListener('click', openDoorsAndPlayMusic);
+          
+          // Xóa con trỏ pointer và hiệu ứng shimmer
+          leftDoor.style.cursor = 'default';
+          rightDoor.style.cursor = 'default';
+          leftDoor.classList.remove('door-shimmer');
+          rightDoor.classList.remove('door-shimmer');
+        }
+        
+        // Thêm cursor pointer cho cửa
+        leftDoor.style.cursor = 'pointer';
+        rightDoor.style.cursor = 'pointer';
+        
+        // Thêm event listener cho cả 2 cửa
+        leftDoor.addEventListener('click', openDoorsAndPlayMusic);
+        rightDoor.addEventListener('click', openDoorsAndPlayMusic);
+      });
     </script>
 
     <style>
@@ -5635,6 +5791,7 @@
     </div>
 
     <script>
+      // Script quản lý nhạc - đồng bộ với cửa
       document.addEventListener("DOMContentLoaded", function () {
         const audio = document.getElementById("background-music");
         const toggleButton = document.getElementById("music-toggle");
@@ -5642,33 +5799,23 @@
         const pauseIcon = document.getElementById("pause-icon");
 
         let isPlaying = false;
-        let hasStarted = false;
 
-        // Chạm lần đầu để phát nhạc
-        document.body.addEventListener(
-          "click",
-          function () {
-            if (!hasStarted) {
-              audio
-                .play()
-                .then(() => {
-                  isPlaying = true;
-                  hasStarted = true;
-                  playIcon.style.display = "none";
-                  pauseIcon.style.display = "block";
-                  toggleButton.classList.add("vibrating");
-                })
-                .catch((e) => {
-                  console.log("Lỗi phát nhạc: ", e);
-                });
-            }
-          },
-          { once: true }
-        );
+        // Hàm cập nhật UI khi nhạc bắt đầu phát
+        window.startMusicUI = function() {
+          isPlaying = true;
+          playIcon.style.display = "none";
+          pauseIcon.style.display = "block";
+          toggleButton.classList.add("vibrating");
+        };
+
+        // Lắng nghe sự kiện khi nhạc bắt đầu phát (từ click vào cửa)
+        audio.addEventListener('play', function() {
+          startMusicUI();
+        });
 
         // Bấm nút để bật/tắt nhạc
         toggleButton.addEventListener("click", function (event) {
-          event.stopPropagation(); // không lan sự kiện click
+          event.stopPropagation();
 
           if (isPlaying) {
             audio.pause();
