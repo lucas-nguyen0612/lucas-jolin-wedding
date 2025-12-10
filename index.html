@@ -5020,7 +5020,7 @@
         right: 10px;
         bottom: 20px;
         position: fixed;
-        z-index: 90000050;
+        z-index: 900;
         margin-right: calc(50% - 210px);
       }
       #GROUP57 {
@@ -5385,7 +5385,7 @@
       }
       #IMAGE81 > .ladi-image > .ladi-image-background,
       #IMAGE83 > .ladi-image > .ladi-image-background {
-        background-image: url("https://w.ladicdn.com/s500x550/6833feb01c8070001239a3de/thiet_ke_chua_co_ten-removebg-preview-20250816123312-yif3j.png");
+        background-image: url("assets/images/missing/card-frame.png")!important;
       }
       #HEADLINE155,
       #HEADLINE157 {
@@ -5407,13 +5407,20 @@
         top: 72.6203px;
         left: 49.0981px;
       }
-      #IMAGE82 > .ladi-image > .ladi-image-background,
       #IMAGE84 > .ladi-image > .ladi-image-background {
         width: 157.328px;
-        height: 205.777px;
-        top: -59.778px;
-        left: -31.906px;
-        background-image: url("https://w.ladicdn.com/s500x550/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg");
+          height: 205.777px;
+          top: -56.778px;
+          left: -34.906px;
+        background-image: url("assets/images/QR_gai.png")!important;
+      }
+      #IMAGE82 > .ladi-image > .ladi-image-background {
+        width: 95.8388px;
+        height: 237.496px;
+        top: 0;
+        left: 0;
+        background-image: url(assets/images/image-wedding/QR_trai.png)!important;
+        background-size: contain;
       }
       #IMAGE82 > .ladi-image,
       #IMAGE84 > .ladi-image {
@@ -5532,20 +5539,83 @@
       }
     </style>
 
+
+    <style>
+      @keyframes shake-box {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(10deg); }
+        50% { transform: rotate(0deg); }
+        75% { transform: rotate(-10deg); }
+        100% { transform: rotate(0deg); }
+      }
+      .shake-box {
+        animation: shake-box 10s infinite ease-in-out !important;
+        transform-origin: center bottom;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const group64 = document.getElementById('GROUP64');
+        if (group64) {
+          // Thêm class shake
+          group64.classList.add('shake-box');
+          
+          // Xử lý click mở popup
+          group64.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            const popup = document.getElementById('POPUP14');
+            const backdrop = document.getElementById('backdrop-popup');
+            
+            if (popup && backdrop) {
+              popup.style.display = 'block';
+              backdrop.style.display = 'block';
+              
+              // Xử lý đóng popup khi click ra ngoài
+              backdrop.onclick = function() {
+                popup.style.display = 'none';
+                backdrop.style.display = 'none';
+              };
+              
+              // Xử lý đóng popup khi click nút đóng (nếu có)
+              const closeBtns = popup.querySelectorAll('.ladi-popup-close, .close-popup');
+              closeBtns.forEach(btn => {
+                btn.onclick = function() {
+                  popup.style.display = 'none';
+                  backdrop.style.display = 'none';
+                };
+              });
+            }
+          });
+        }
+      });
+    </script>
+    
     <div class="cloud-door left-door" id="left-door"></div>
     <div class="cloud-door right-door" id="right-door"></div>
     
     <!-- Text hướng dẫn mở thiệp -->
-    <div id="open-invitation-text" style="
-      position: fixed;
-      top: 25%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10000;
-      text-align: center;
-      pointer-events: none;
-    ">
-      <div style="
+    <div id="open-invitation-text">
+      <div class="invitation-content">
+       Chạm để mở thiệp
+      </div>
+    </div>
+
+    <style>
+      /* Styles for Open Invitation Text */
+      #open-invitation-text {
+        position: fixed;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      #open-invitation-text .invitation-content {
         font-size: 32px;
         font-weight: bold;
         color: #fff;
@@ -5556,19 +5626,18 @@
           2px 2px 4px rgba(0, 0, 0, 0.5);
         font-family: 'Dancing Script', cursive;
         letter-spacing: 2px;
-      ">
-       Chạm để mở thiệp
-      </div>
-      <div style="
-        font-size: 60px;
-        margin-top: 20px;
-        animation: bounce-arrow 1s ease-in-out infinite;
-      ">
-        👇
-      </div>
-    </div>
+      }
 
-    <style>
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        #open-invitation-text {
+            top: 25%;
+        }
+        #open-invitation-text .invitation-content {
+            font-size: 24px;
+        }
+      }
+
       @keyframes bounce {
         0%, 100% {
           transform: translateY(0);
@@ -5698,7 +5767,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 9999;
+        z-index: 999;
         cursor: pointer;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
@@ -8279,26 +8348,14 @@
                   </div>
                 </div>
               </div>
-              <div data-action="true" id="GROUP64" class="ladi-element">
+              <div data-action="true" id="GROUP64" class="ladi-element shake-box" style="cursor: pointer;">
                 <div class="ladi-group">
                   <div id="BOX17" class="ladi-element">
                     <div class="ladi-box ladi-transition"></div>
                   </div>
-                  <div id="SHAPE30" class="ladi-element">
-                    <div class="ladi-shape ladi-transition">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="100%"
-                        viewBox="0 -960 960 960"
-                        width="100%"
-                        preserveAspectRatio="none"
-                        class=""
-                        fill="rgba(255, 255, 255, 1)"
-                      >
-                        <path
-                          d="M450-160v-526L202-438l-42-42 320-320 320 320-42 42-248-248v526h-60Z"
-                        ></path>
-                      </svg>
+                  <div id="IMAGE_GIFT_BOX" class="ladi-element" style="width: 100%; height: 100%; top: 0; left: 0; position: absolute;">
+                    <div class="ladi-image ladi-transition">
+                      <div class="ladi-image-background" style="background-image: url('assets/images/thumbnails/love-letter-20250129052608-hsni4-20251124153134--u-oo.png'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
                     </div>
                   </div>
                 </div>
@@ -8527,7 +8584,7 @@
               <div data-action="true" id="GROUP182" class="ladi-element">
                 <div class="ladi-group">
                   <a
-                    href="https://w.ladicdn.com/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg"
+                    href="assets/images/QR_gai.png"
                     target="_blank"
                     id="BUTTON31"
                     class="ladi-element"
@@ -8557,7 +8614,7 @@
                           </div>
                           <div id="HEADLINE155" class="ladi-element">
                             <h3 class="ladi-headline">
-                              💳 Bank: Techcombank <br />🤵 TK: Nguyễn Văn A
+                              🤵 TK: NGUYEN THANH DAT
                               <br />🏦 STK: 1234567890&nbsp;<br />
                             </h3>
                           </div>
@@ -8604,7 +8661,7 @@
                     </div>
                   </div>
                   <a
-                    href="https://w.ladicdn.com/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg"
+                    href="assets/images/QR_gai.png"
                     target="_blank"
                     id="BUTTON32"
                     class="ladi-element"
@@ -10257,7 +10314,7 @@
             {
               "dr": "action",
               "dv": "_blank",
-              "dw": "https://w.ladicdn.com/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg",
+              "dw": "assets/images/QR_trai.png",
               "a": "link"
             }
           ]
@@ -10275,7 +10332,7 @@
           "cs": [
             {
               "dr": "action",
-              "dC": "https://w.ladicdn.com/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg",
+              "dC": "assets/images/QR_trai.png",
               "dF": "image",
               "a": "lightbox"
             }
@@ -10294,7 +10351,7 @@
           "cs": [
             {
               "dr": "action",
-              "dC": "https://w.ladicdn.com/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg",
+              "dC": "assets/images/QR_gai.png",
               "dF": "image",
               "a": "lightbox"
             }
@@ -10310,7 +10367,7 @@
             {
               "dr": "action",
               "dv": "_blank",
-              "dw": "https://w.ladicdn.com/6833feb01c8070001239a3de/ma_qr_cua_toi_1-1024-20250716034343-94k_g.jpeg",
+              "dw": "assets/images/QR_gai.png",
               "a": "link"
             }
           ]
