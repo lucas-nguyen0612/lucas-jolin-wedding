@@ -64,9 +64,9 @@
         window.ladi_ttq_data.push(arguments);
       };
     </script>
-    <link rel="canonical" href="https://jolin-lucas-wedding.vercel.app" />
-    <meta property="og:url" content="https://jolin-lucas-wedding.vercel.app" />
-    <meta property="og:title" content="Thiệp Mời Cưới Thành Đạt ♥️ Hồng Hạnh" />
+    <link rel="canonical" href="https://lucas-jolin-wedding.vercel.app" />
+    <meta property="og:url" content="https://lucas-jolin-wedding.vercel.app" />
+    <meta property="og:title" content="Thiệp Cưới Thành Đạt ♥️ Hồng Hạnh" />
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
@@ -2210,7 +2210,7 @@
         height: 776.3px;
         top: -41px;
         left: -78.667px; */
-        background-image: url("assets/images/image-wedding/JAY_7272.jpg");
+        background-image: url("assets/images/image-wedding/JAY_7014.jpg");
       }
       #HEADLINE79 {
         width: 419px;
@@ -3901,7 +3901,7 @@
         height: 242.2px;
         top: 0px;
         left: 0.6665px;
-        background-image: url("assets/images/image-wedding/JAY_7014.jpg");
+        background-image: url("assets/images/image-wedding/JAY_7272.jpg");
       }
       #IMAGE39.ladi-animation > .ladi-image,
       #IMAGE47.ladi-animation > .ladi-image,
@@ -5415,11 +5415,11 @@
         background-image: url("assets/images/QR_gai.png")!important;
       }
       #IMAGE82 > .ladi-image > .ladi-image-background {
-        width: 95.8388px;
-        height: 237.496px;
-        top: 0;
-        left: 0;
-        background-image: url(assets/images/image-wedding/QR_trai.png)!important;
+        width: 157.328px;
+        height: 205.777px;
+        top: -50.778px;
+        left: -34px;
+        background-image: url(assets/images/QR_gai.png) !important;
         background-size: contain;
       }
       #IMAGE82 > .ladi-image,
@@ -5751,6 +5751,20 @@
         // Thêm event listener cho cả 2 cửa
         leftDoor.addEventListener('click', openDoorsAndPlayMusic);
         rightDoor.addEventListener('click', openDoorsAndPlayMusic);
+
+        // Đọc tham số customer từ URL và thay thế tên khách
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerName = urlParams.get('customer');
+        
+        if (customerName) {
+          const guestNameElement = document.getElementById('QUYKHACH');
+          if (guestNameElement) {
+            const headline = guestNameElement.querySelector('h3.ladi-headline');
+            if (headline) {
+              headline.textContent = customerName;
+            }
+          }
+        }
       });
     </script>
 
@@ -6140,17 +6154,17 @@
               </div>
             </div>
           </div>
-          <div id="IMAGE31" class="ladi-element">
+          <div data-action="true" id="IMAGE31" class="ladi-element">
             <div class="ladi-image ladi-transition">
               <div class="ladi-image-background"></div>
             </div>
           </div>
-          <div id="IMAGE34" class="ladi-element">
+          <div data-action="true" id="IMAGE34" class="ladi-element">
             <div class="ladi-image ladi-transition">
               <div class="ladi-image-background"></div>
             </div>
           </div>
-          <div id="IMAGE35" class="ladi-element">
+          <div data-action="true" id="IMAGE35" class="ladi-element">
             <div class="ladi-image ladi-transition">
               <div class="ladi-image-background"></div>
             </div>
@@ -6336,7 +6350,7 @@
                         </h3>
                       </div>
                       <div id="QUYKHACH" class="ladi-element">
-                        <h3 class="ladi-headline ladi-transition">Bạn + Người Thương</h3>
+                        <h3 class="ladi-headline ladi-transition">Bạn & Người thương</h3>
                       </div>
                       <div id="PARAGRAPH188" class="ladi-element">
                         <div class="ladi-paragraph ladi-transition">
@@ -8609,8 +8623,8 @@
                           </div>
                           <div id="HEADLINE155" class="ladi-element">
                             <h3 class="ladi-headline">
-                              🤵 TK: NGUYEN THANH DAT
-                              <br />🏦 STK: 1903 2285 6730 11&nbsp;<br />
+                              TK: PHAM HONG HANH
+                              <br />🏦 STK: 1903 5069 1130 19&nbsp;<br />
                             </h3>
                           </div>
                         </div>
@@ -9807,7 +9821,14 @@
         "GROUP115": { "a": "group", "D": "fadeInRight", "A": "1s" },
         "IMAGE29": {
           "a": "image",
-          "cs": [{ "dr": "action", "dw": "CHURE", "a": "popup" }],
+          "cs": [
+            {
+              "dr": "action",
+              "dC": "assets/images/image-wedding/JAY_7382.jpg",
+              "dF": "image",
+              "a": "lightbox"
+            }
+          ],
           "D": "fadeInLeft",
           "A": "1s"
         },
@@ -9821,7 +9842,14 @@
         "GROUP117": { "a": "group", "D": "fadeInRight", "A": "1s" },
         "IMAGE30": {
           "a": "image",
-          "cs": [{ "dr": "action", "dw": "CODAU", "a": "popup" }],
+          "cs": [
+            {
+              "dr": "action",
+              "dC": "assets/images/image-wedding/JAY_7231.jpg",
+              "dF": "image",
+              "a": "lightbox"
+            }
+          ],
           "D": "fadeInRight",
           "A": "1s"
         },
@@ -9860,9 +9888,45 @@
         "GROUP119": { "a": "group", "D": "fadeInLeft", "A": "1s" },
         "SHAPE55": { "a": "shape", "F": "fadeInLeft", "C": "0s" },
         "GROUP121": { "a": "group", "D": "bounceIn", "A": "0s" },
-        "IMAGE31": { "a": "image", "D": "bounceIn", "A": "1s" },
-        "IMAGE34": { "a": "image", "D": "bounceIn", "A": "1s" },
-        "IMAGE35": { "a": "image", "D": "bounceIn", "A": "1s" },
+        "IMAGE31": { 
+          "a": "image", 
+          "D": "bounceIn", 
+          "A": "1s",
+          "cs": [
+            {
+              "dr": "action",
+              "dC": "assets/images/image-wedding/JAY_6705.jpg",
+              "dF": "image",
+              "a": "lightbox"
+            }
+          ]
+        },
+        "IMAGE34": { 
+          "a": "image", 
+          "D": "bounceIn", 
+          "A": "1s",
+          "cs": [
+            {
+              "dr": "action",
+              "dC": "assets/images/image-wedding/JAY_6759.jpg",
+              "dF": "image",
+              "a": "lightbox"
+            }
+          ]
+        },
+        "IMAGE35": { 
+          "a": "image", 
+          "D": "bounceIn", 
+          "A": "1s",
+          "cs": [
+            {
+              "dr": "action",
+              "dC": "assets/images/image-wedding/JAY_6799.jpg",
+              "dF": "image",
+              "a": "lightbox"
+            }
+          ]
+        },
         "PARAGRAPH185": {
           "option.is_product_mapping_name_custom": true,
           "a": "paragraph"
@@ -9947,7 +10011,7 @@
           "cs": [
             {
               "dr": "action",
-              "dC": "assets/images/image-wedding/JAY_7014.jpg",
+              "dC": "assets/images/image-wedding/JAY_7272.jpg",
               "dF": "image",
               "a": "lightbox"
             }
@@ -10230,7 +10294,7 @@
           "cs": [
             {
               "dr": "action",
-              "dC": "assets/images/image-wedding/JAY_7575.jpg",
+              "dC": "assets/images/image-wedding/JAY_7510.jpg",
               "dF": "image",
               "a": "lightbox"
             }
@@ -10309,7 +10373,7 @@
             {
               "dr": "action",
               "dv": "_blank",
-              "dw": "assets/images/QR_trai.png",
+              "dw": "assets/images/QR_gai.png",
               "a": "link"
             }
           ]
@@ -10327,7 +10391,7 @@
           "cs": [
             {
               "dr": "action",
-              "dC": "assets/images/QR_trai.png",
+              "dC": "assets/images/QR_gai.png",
               "dF": "image",
               "a": "lightbox"
             }
